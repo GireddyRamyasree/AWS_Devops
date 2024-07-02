@@ -5,3 +5,4 @@
  -- it will show projects choose number 2160
  16 mvn archetype:generate > mvn-sample-project
  17 yum install git -y
+ java -version
