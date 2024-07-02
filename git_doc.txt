@@ -1,0 +1,7 @@
+  sudo yum install -y apache-maven
+   13  mvn --version
+   14  java -version
+   15  mvn archetype:generate
+ -- it will show projects choose number 2160
+ 16 mvn archetype:generate > mvn-sample-project
+ 17 yum install git -y
