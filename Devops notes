@@ -1,0 +1,60 @@
+
+-- AWS Account ID - 058264361775
+
+-- Github password - devops*@123
+
+-- Github Token - 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
+
+-- https://github.com/aakumar07/JRK_devops2aws_4PM/tree/main --> github
+
+-- https://meet.google.com/png-zgxs-est  --> Daily class link
+
+-- Join Zoom Meeting
+-- https://us04web.zoom.us/j/5996753851?pwd=fTl33aVTSfdoRdmDOSwvEEyfelyL7B.1   --> practice link
+
+-- Meeting ID: 599 675 3851
+-- Passcode: rSkW1E
+
+-- https://github.com/aakumar07/JRK_devops2aws_9-AM/blob/main/git_doc.txt 
+
+-- https://disney.zoom.us/j/6094391588?pwd=WUhMRldZOU4vYVVtOWpyYnRsb055QT09
+
+-- Maven Steps:
+
+-- maven install amazon linux for prerequisites
+
+    1 swith to root user
+    2  ls
+    3  sudo wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+    4  sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+    6  cd /etc/yum.repos.d
+    7  ls
+    8  ls -lart
+    9  cd ..
+   10  ls
+   11  exit
+   12  sudo yum install -y apache-maven
+   13  mvn --version
+   14  java -version
+   15  mvn archetype:generate
+ -- it will show projects choose number 2160
+ 16 mvn archetype:generate > mvn-sample-project
+ 17 yum install git -y
+ 18 git init
+
+
+
+
+
+
+
+
+
+
+
+  
+            
+
+
+
+
