@@ -28,6 +28,18 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <distributionManagement>
+		 <snapshotRepository>
+		    <id>deploymentRepo</id>
+		    <url>http://13.232.61.167:8081/repository/maven-snapshots/</url>
+		 </snapshotRepository>
+		
+		 <repository>
+		    <id>deploymentRepo</id>
+		    <url>http://13.232.61.167:8081/repository/maven-releases/</url>
+		 </repository>
+  </distributionManagement>
 
   <build>
     <finalName>maven-webapp</finalName>
