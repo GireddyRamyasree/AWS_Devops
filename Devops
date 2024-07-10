@@ -1,27 +1,45 @@
 
--- AWS Account ID - 058264361775
+-- https://crontab.cronhub.io/
 
--- Github password - devops*@123
+-- https://github.com/GireddyRamyasree/AWS_Devops 
 
--- Github Token - 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
+-- Github Token --> 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
 
--- https://github.com/aakumar07/JRK_devops2aws_4PM/tree/main --> github
+-- https://meet.google.com/png-zgxs-est  --> Daily class link 
 
--- https://meet.google.com/png-zgxs-est  --> Daily class link
+-- https://github.com/aakumar07/JRK_devops2aws_9-AM/blob/main/git_doc.txt --> github docs
 
--- Join Zoom Meeting
--- https://us04web.zoom.us/j/5996753851?pwd=fTl33aVTSfdoRdmDOSwvEEyfelyL7B.1   --> practice link
+-- https://disney.zoom.us/j/6094391588?pwd=WUhMRldZOU4vYVVtOWpyYnRsb055QT09 --> Zoom practice link
 
--- Meeting ID: 599 675 3851
--- Passcode: rSkW1E
+=====================================================================================================================================  
 
--- https://github.com/aakumar07/JRK_devops2aws_9-AM/blob/main/git_doc.txt 
+***** GitHub Steps:
+  
+   --  yum install git -y
+   --  git init 
+   --  git --version
+   --  git clone https://github.com/GireddyRamyasree/AWS_Devops.git
+   --  git status
+   --  git add . or git add filename
+   -- git commit -m "committing the file"
+   -- git push origin main (local to remote)
+   -- username
+   -- token password
+   --  vi Devops notes
+   --  vi git_doc.txt
+   --  git status
+   --  git add .
+   --  git status
+   --  git commit -m "modified the file"
+   --  git push origin main
 
--- https://disney.zoom.us/j/6094391588?pwd=WUhMRldZOU4vYVVtOWpyYnRsb055QT09
+==================================================================================================================================================
 
--- Maven Steps:
+ ***** Maven Steps:
+ 
+--> Maven install amazon linux -- for prerequisites
 
--- maven install amazon linux for prerequisites
+*********** maven home directory ==>> /usr/share/apache-maven *********
 
     1 swith to root user
     2  ls
@@ -38,9 +56,683 @@
    14  java -version
    15  mvn archetype:generate
  -- it will show projects choose number 2160
- 16 mvn archetype:generate > mvn-sample-project
- 17 yum install git -y
- 18 git init
+ 16 mvn archetype:generate > mvn-sample-project -- choose number 7 and click Y
+ 17 it will create sample project in one path
+ 18 need to do git steps for maven 
+ --  yum install git -y
+ -- git init
+ -- same as bove git steps to follow 
+ 
+-- mvn archetype:generate
+-- choose number 2160 and choose number 8
+-- these steps to follow in linux server.
+ Define value for property 'groupId': devops-maven-project
+ Define value for property 'artifactId': maven-webapp
+ Define value for property 'version' 1.0-SNAPSHOT: :
+ Define value for property 'package' devops-maven-project: : .war
+ Confirm properties configuration:
+ groupId: devops-maven-project
+ artifactId: maven-webapp
+ version: 1.0-SNAPSHOT
+ package: .war
+
+-- Go to maven-webapp and check the pom.xml and src files
+-- Again need to follow the github steps for maven-webapp
+-- need to check mvn clean package
+-- it will show error because of pom.xml need to copy the path.
+-- mv /root/AWS_Devops/maven-webapp/pom.xml /root/AWS_Devops/
+-- mv /root/AWS_Devops/maven-webapp/src /root/AWS_Devops/
+-- delete the maven-webapp directory
+-- again need to follow github steps for the scr and pom.xml
+-- run the mvn clean package
+-- it will show Bulid success
+-- It will create one target directory in that files will be create.
+-- maven-archiver  maven-webapp  maven-webapp.war
+-- in target directory ==>> war file will generate. ===>>myweb-8.2.0.war 
+-- /root/AWS_Devops/src/main 
+
+====================================================================================================================================================
+
+**** Tomcat Installation Steps:
+
+-- we need to take one ec2 instance and login into the instance ..
+
+-- yum install httpd -y ( in linux server installating means give yum
+
+-- systemctl start httpd
+
+-- sudo yum install java-1.8.0-devel. ( need to install java)
+
+-- cd /opt need to download tomcat9 version.
+
+-- go to tar.gz copy and paste in cd /opt path
+
+-- wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.90/bin/apache-tomcat-9.0.90.tar.gz ( need to give wget downloading from outside means)
+
+-- apache-tomcat-9.0.90.tar.gz (need to extract)
+
+-- tar -xvf apache-tomcat-9.0.90.tar.gz
+
+-- tar.gz ==>> unzip ===>>> tar -xvf tar.gz
+
+-- apache-tomcat-9.0.90
+
+-- mv apache-tomcat-9.0.90 tomcat-9 (rename the file)
+
+-- need to give full permissions for (tomcat-9 chmod -R 777 tomcat-9)
+
+-- go to path /opt/tomcat-9/webapps/manager/META-INF/context.xml
+
+-- delete the 2 lines in xml file
+-- <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+
+-- need to access server ip and portnumber 8080
+
+-- example http://43.204.142.78:8080/
+-- /opt/tomcat-9/bin
+
+-- start the server sh startup.sh
+-- stop the server sh shutdown.sh
+-- it will open the tomcat page
+
+-- go to manage apps and give username password
+
+-- username : tomcat , password : tomcat
+
+-- cd /opt/tomcat-9/conf/tomcat-users.xml
+
+
+--   <user username="tomcat" password="tomcat" roles="manager-gui,manager-script"/>
+-- again stop and start the servers
+
+-- we need to do the ssh configuration..
+
+--source to destination server
+-- go to maven server and AWS_Devops path
+
+-- vi /tmp/devops.pem file -- ssh configuration
+
+-- need to copy devops.pem file and paste it.
+
+-- chmod 700  /tmp/devops.pem
+-- need to transter one server to another tomcat server
+-- cd target/
+-- maven-webapp.war
+-- need to transfer the tomcat server 
+-- scp --> secure copy and -i -- interactive terminal
+-- scp -i /tmp/devops.pem maven-webapp.war ec2-user@43.204.142.78:/opt/tomcat-9/webapps path
+-- click yes
+-- go to webapps path and check maven-webapp.war generate
+-- stop and start the tomcat servers
+-- check the maven-webapp and click on that it will display the message.
+
+-- Tomcat port number : 8080
+
+-- sh startup.sh
+-- sh shutdown.sh
+
+-- tomcat directory : /home/ec2-user/apache-tomcat-9.0.58
+-- home directory : /opt/tomcat-9
+
+====================================================================================================================================================
+
+**** Sonarqube Steps:
+
+-- minimum requirement take one ec2 instance --->> 2 cpu , 4 gb ram.
+
+--  yum install -y java-1.8.0-openjdk-devel.x86_64
+
+-- sudo wget -O /etc/yum.repos.d/sonar.repo http://downloads.sourceforge.net/project/sonar-pkg/rpm/sonar.repo
+
+-- yum install sonar -y
+
+-- systemctl start sonar -- start the application
+
+-- systemctl start sonar  -- stop the application
+
+-- Sonar port number : 9000
+
+-- ip and port number -- http://13.233.129.237:9000
+
+-- Login to the application give username : admin  password : admin
+
+-- sonar: 608a5f622766b660af5c014170f2e5412c25717b (sonar token)
+
+-- /opt/sonar/conf/sonar.properties -- home directory
+
+===================================================================================================================================================
+
+**** Nexus installation Steps:
+
+-- we need to take one ec2 instance and login into the instance  -->>  2 cpu , 4 gb ram. 
+
+-- sudo yum install -y java-1.8.0-openjdk-devel.x86_64
+
+-- cd /opt
+
+-- sudo wget https://download.sonatype.com/nexus/3/latest-unix.tar.gzsudo wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+
+--  tar -xvf latest-unix.tar.gz
+    -- ls
+    -- mv nexus-3.34.0-01 nexus3
+    -- ls -l
+   -- chown -R ec2-user:ec2-user nexus3 sonatype-work
+   --  ls -l
+   --  ls
+   --  cd nexus3/
+   --  ls
+   --  cd bin
+   --  ls
+   --  vi nexus.rc edit the file as ec2-user
+   --  ln -s /opt/nexus3/bin/nexus /etc/init.d/nexus -- soft link
+   --  cd /etc/init.d/
+   --  chkconfig --add nexus
+   --  chkconfig nexus on
+   --  sudo service nexus start or systemsctl start nexus 
+   --  cat /opt/sonatype-work/nexus3/admin.password -- it show the password 
+   -- again we need to edit the password in server
+
+   -- username : admin , password : admin123
+
+   -- go to settings and respositories will check maven-releases and maven-snapshots
+   -- cd /opt/
+   --  ls
+   --  cd nexus3/
+   --  ls
+   --  cd bin
+   --  ls
+   --  cd ..
+   --  ls
+   --  cd etc/
+   --  ls
+   --  vi nexus-default.properties
+   --  sudo service nexus stop --  systemsctl stop nexus 
+   --  sudo service nexus start -- systemsctl start nexus
+   --  history
+
+-- nexus port number : 8081
+
+-- home directory -- /opt/nexus3/bin/nexus
+
+====================================================================================================================================================
+
+***** Jenkins Steps:
+
+-- jenkins port number : 8080
+
+-- jenkins ==>> jobs create ==>> run ==>> build.
+
+jenkins ==>> we have two types of jobs.
+
+1. free style jobs ( jenkins dash board ===>>> GUI )
+
+2. Pipeline jobs.. ( jenkins dash board ===>>> Groovy script and github ==>> Jenkinsfile)
+
+jenkins ===>> plugins ==>>> install ===>> extranal features adding to our jenkins dashboard.
+
+jenkins ===>> plugins ==>>> 3 ways to install..
+
+jenkins ==>> build triggers ===>> pollscm , build periodically ( cron expression ), webhooks..
+
+jenkins ==>> all devops tool integrate with jenkins.
+
+jenkins ==>>>> we will create parameterized jobs..
+
+jenkins ==>>> sequential jobs ( upstream and downstream jobs) and parallel jobs..
+
+jenkins ===>>> master / slave architecture.
+
+jenkins ==>>> backup
+
+jenkins ==>>> security.
+
+jenkins ==>>> users to create.
+
+jenkins ==>> upgrade.
+
+jenkins ==>> automate with the help of jobs..
+
+Jenkins ==>>> important configuration files..
+
+1. jenkins home directory : /var/lib/jenkins.
+
+2. installed plugins : /var/lib/jenkins/plugins
+
+3. created jobs list : /var/lib/jenkins/workspace
+
+4. nodes information : /var/lib/jenkins/nodes
+
+5. jenkins logs information : /var/lib/jenkins/logs
+
+6. list of jobs ==>> /var/lib/jenkins/jobs
+=======================================================================
+
+ -- we need to take one ec2 instance and login into the instance.
+
+ -- create one file has vi jenkins.sh
+ 
+ -- #! /bin/bash
+
+#Installing Java 11
+amazon-linux-extras install java-openjdk11 -y
+
+#Installng git tool for configure to jenkins
+sudo yum install git -y
+
+#Add the Jenkins repo
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+
+#Import the key file:
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+# Installing jenkins
+sudo yum install jenkins -y
+
+-- sh jenkins.sh
+
+--  start the jenkins service ==>>> service jenkins start or systemctl start jenkins
+
+-- jenkins ec2instance==>> publicip:8080(  browser) ==>>> enter
+
+-- jenkins dash board ==>> display ==>> path /var/lib/jenkins/secrets/initialadminpasswd ===>>> copy this path
+
+-- go to jenkins ec2 instace ==>>> cat /var/lib/jenkins/secrets/initialadminpasswd ==>> enter ===>> encrypted password ==>> copy
+
+-- paste it into jenkins dashboard ==>> box .
+
+-- select Install suggested plugins ==>> click
+
+-- username : devops , password : admin
+
+-- username , password , confirm password , email (devopsaws@gamil.com) ===>> continue ==>> your jenkins dashboard is ready.
+
+-- click on new item and create a job and select free style and click on ok.
+
+-- General tab -- description will write and select -- Discard old bulids -- days 1 or 2 -- Max bulids -- 2 like this.
+
+-- source code management -- select Git -- Add jenkins -- give credentials -- 
+
+-- username and password -- Github credentials 
+
+-- ID --> GitHub , Description -- GitHub-configuration
+
+-- Branch --> main
+
+-- Apply and save 
+
+-- Bulid now -- success -- check console output for the msg
+
+-- go to configure --> Bulid steps --> Invoke top-level maven targets
+
+-- Goals --> mvn clean package
+
+-- It will show error -- failure
+
+-- command not found means particular tool has not installed in server
+
+-- We need to integrate the maven tool.
+
+-- Go to dashboard --> manage jenkins --> system configuration --> tools
+
+-- Go to maven installations --> Add maven --> Name --> maven3 -- apply and save
+
+-- Go to configure -- Bulid steps --> Invoke top-level maven targets --> maven version -- maven3
+
+-- Goals --> clean package  -- apply and save
+
+-- Bulid now --> It will show success message.
+
+===================================================================================================================================================
+
+Jenkins Port Number -- 8080 --> username : devops , password : admin --> jenkins home directory : /var/lib/jenkins.
+
+Tomcat Port Number  -- 8080 --> username : tomcat , password : tomcat --> home directory : /opt/tomcat-9
+
+Sonar Port Number   -- 9000 --> username : admin  password : admin  --> home directory :  /opt/sonar/conf/sonar.properties 
+ 
+Nexus Port Number   -- 8081 --> admin , password : admin123  -->   home directory -- /opt/nexus3/bin/nexus
+
+===================================================================================================================================================
+
+
+***** Project-GSMNT ****
+
+-- *** Git Steps:
+
+-- click on new item and create a job and select free style and click on ok.
+
+-- General tab -- description will write and select -- Discard old bulids -- days 1 or 2 -- Max bulids -- 2 like this.
+
+-- source code management -- select Git -- Add jenkins -- give credentials -- 
+
+-- username and password -- Github credentials 
+
+-- ID --> GitHub , Description -- GitHub-configuration
+
+-- Branch --> main
+
+-- Apply and save 
+
+-- Bulid now -- success -- check console output for the msg.
+
+======================================================================
+
+-- *** Maven steps:
+
+-- We need to integrate the maven tool.
+
+-- Go to dashboard --> manage jenkins --> system configuration --> tools
+
+-- Go to maven installations --> Add maven --> Name --> maven3 -- apply and save
+
+-- Go to configure -- Bulid steps --> Invoke top-level maven targets --> maven version -- maven3
+
+-- Goals --> clean compile  -- apply and save
+
+-- Bulid now --> It will show success message.
+
+==========================================================================
+
+-- *** Sonar Steps:
+
+-- Go to dashboard --> manage jenkins --> system configuration --> Plugins --> Available Plugins
+
+-- Type sonarq and select sonarqube scanner and click on install.
+
+-- need to configure sonar
+
+-- Go to dashboard --> manage jenkins --> system configuration --> system
+
+-- Go to sonarQube installations --> add Name --> sonar , Server URL --> http://13.233.141.14:9000/
+
+-- we need to add credentials
+
+-- Go to dashboard --> manage jenkins --> Secuirty --> credentials --> System -- global --> add credentials
+
+-- select secret text --> secret as --> sonar token --> ID --> sonar --> Description --> sonar-configure
+
+-- Go to dashboard --> manage jenkins --> system configuration --> system
+
+-- Go to sonarQube servers -- server authentication token -- add --> sonar-configure
+
+-- Bulid now -- it will show success or failure message 
+
+-- Go to configure -- Bulid steps --> Invoke top-level maven targets --> maven version -- maven3
+
+-- Goals --> clean sonar:sonar  -- apply and save
+
+Error message --> [ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121:sonar (default-cli) on project maven-webapp: Unable to execute SonarScanner analysis: Fail to get bootstrap
+ index from server: Failed to connect to localhost/127.0.0.1:9000: Connection refused (Connection refused)
+
+-- pom.xml we need to involve has 2 places 
+
+--   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target> 
+    <sonar.host.url>http://13.233.141.14:9000/</sonar.host.url> ( these line we need to add in properties)
+  </properties>
+
+-- Bulid now success will check sonarqube page.
+
+===========================================================
+
+**** Maven Steps :
+
+-- Go to configure -- Bulid steps --> Invoke top-level maven targets --> maven version -- maven3
+
+-- Goals --> clean sonar:sonar package  -- apply and save -- Bulid now 
+ 
+-- war file will generate need to place in tomcat.
+
+-- Go to workspace it will generate target folder -- maven-webapp.war
+
+*** Nexus to Jenkins Integrate:
+
+-- go to jenkins server 
+
+-- cd /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3/conf/ -- vi setting.xml
+
+--  <server>
+      <id>deploymentRepo</id>
+      <username>repouser</username> -- change the nexus  username and password 
+      <password>repopwd</password>
+    </server>
+    -->
+   <server>
+      <id>deploymentRepo</id>
+      <username>admin</username>
+      <password>admin123</password>
+    </server> 
+
+-- pom.xml 3 fields -- artifact id , group id , snapshot , type of  package
+
+-- properties tab need to integrate -- sonar in pom.xml 
+
+-- dependencies
+
+-- distribution management need to integrate -- nexus in pom.xml
+
+-- go to nexus page select browse and select maven-snapshots , maven-releases copy the link and edit in distribution management 
+
+<distributionManagement>
+		 <snapshotRepository>
+		    <id>deploymentRepo</id>
+		    <url>http://13.232.61.167:8081/repository/maven-snapshots/</url>
+		 </snapshotRepository>
+		
+		 <repository>
+		    <id>deploymentRepo</id>
+		    <url>http://13.232.61.167:8081/repository/maven-releases/</url>
+		 </repository>
+  </distributionManagement>
+
+-- in pom.xml after dependencies add the distributionManagement -- Bulid now -- success or failure message.
+
+-- Go to configure -- Bulid steps --> Invoke top-level maven targets --> maven version -- maven3
+
+-- Goals --> clean sonar:sonar deploy  -- apply and save -- Bulid now -- success
+
+-- go to nexus page select browse and select maven-snapshots -- snaphots will added.
+
+-- delete the maven-snapshots
+
+===========================================================
+
+*** Tomcat steps:
+
+-- Go to dashboard --> manage jenkins --> plugins --> Available plugins
+
+-- Type deploy to -- select deploy to container -- click on install
+
+-- Go to dashboard --> configure --> Bulid steps --> Post-build Actions --> Deploy war/ear to a container
+
+-- WAR/EAR files --> **/*.war
+
+-- select Tomcat-9 and add credentials -- username tomcat , password tomcat 
+
+-- Tomcat URL -- http://65.2.35.69:8080/ -- apply and save
+
+-- Bulid now -- success 
+
+-- will check all the servers nexus , sonar, tomcat.
+
+===================================================================================================================================================
+
+  -- NAT - Network Address Translation.
+  
+  -- Ec2 Launch Instance :
+  
+  -- Name - AWS
+  -- Select Image
+  -- AMI(Amazon machine image) -- volume Type
+  -- Instance type - t2.micro 
+  -- security type - all traffic
+  -- key pair name -- devops.pem
+  -- Launch Instance
+  
+  -- Vpc Create Instance:
+  
+  1) create route Table
+  -- Name - AWS
+  
+  2)create Vpc
+  -- Name - AWS
+  -- IPV4 - 10.10.0.0/16
+  -- create vpc
+  
+  3) Go to Route table
+  Refresh after change the route name
+  
+  4) Internet Gateway
+  -- Name - Aws-IGW -- create
+  -- Attach vpc
+  
+  5) Subnets
+  
+  -- VPC ID - AWS
+  -- subnet name - aws_public
+  -- Availablity zone - drop down select
+  -- IPV4 subnet - 10.10.0.0/24
+  -- create subnet
+  
+  same for private also :
+  -- VPC ID - AWS
+  -- subnet name - aws_private
+  -- Availablity zone - drop down select
+  -- IPV4 subnet - 10.10.10.0/24
+  -- create subnet
+  
+  6) Route Table
+  -- Go to MRT --> subnet associations --> Edit subnet associations --> select public --> save association
+  -- same as routes --> Edit routes --> Add route --> 0.0.0.0/0 --> IGW --> save changes
+  
+  7) Launch Ec2 Instance:
+  
+  -- same as above steps
+  -- Network settings Edit
+  -- subnet --> private ( Disbale)
+  -- subnet --> public (Enable)
+  -- create Instance 
+  -- need to check public and private IP 
+  
+-- **** NAT Instance :
+
+ 1) Create Nat-gateway
+
+-- Name --> Aws-ngw
+-- subnet need to select -- public
+-- click on elastic IP 
+-- create nat gateway
+
+2) Elastic Ip need to check it will generate in EC2 dashboard
+
+3) Create Route Table 
+
+-- Name --> Aws-custom route table
+
+4) Route Table
+  -- Go to CRT --> subnet associations --> Edit subnet associations --> select public --> save association
+  -- same as routes --> Edit routes --> Add route --> 0.0.0.0/0 --> NAT-gateway --> save changes
+  
+5) Go to Ec2 instance
+-- select public and copy th IP
+-- open the server
+-- ssh configuration
+-- vi /tmp/devops.pem file -- ssh configuration
+-- need to copy devops.pem file and paste it.
+-- chmod 700  /tmp/devops.pem
+-- scp --> secure copy and -i -- interactive terminal --> ssh -- secure shell
+-- ssh -i /tmp/devops.pem  ec2-user@43.204.142.78
+-- ping google.com 
+
+6) Create Route Table 
+-- CRT
+-- select vpc
+
+7) Route Table
+  -- Go to CRT --> subnet associations --> Edit subnet associations --> select private --> save association
+  -- same as routes --> Edit routes --> Add route --> 0.0.0.0/0 --> NAT-gateway --> save changes
+
+ -- Delete all the instances
+ 
+ =================================================================================================================================
+ 
+ *** application and admin :
+  1) VPC
+   -- Name - application
+  -- IPV4 - 100.100.0.0/16
+  -- create vpc  
+  
+   ** Go to Route table
+  Refresh after change the route name
+  
+  2) Internet Gateway
+  -- Name - app-IGW -- create
+  -- Attach vpc
+  
+  3) Subnets
+  
+  -- VPC ID - application
+  -- subnet name -- app-subnet
+  -- Availablity zone - drop down select
+  -- IPV4 subnet - 100.100.0.0/24
+  -- create subnet
+  
+  4) Route Table
+  -- Go to app-MRT --> subnet associations --> Edit subnet associations --> select public --> save association
+  -- same as routes --> Edit routes --> Add route --> 0.0.0.0/0 --> IGW --> save changes
+
+
+ 5) Launch Ec2 Instance:
+ 
+  -- same as above steps
+  -- Network settings Edit
+  -- app-subnet --> public (Enable)
+  -- create Instance 
+  
+ -- same steps to follow for admin also IP : 150.150.0.0/16
+ ========================================================================
+ 
+ 
+ ****** peering Connection :
+ 
+ 1) -- Name --> vpc-peering
+ -- vpc ID(Requester) --> application
+ -- vpc ID(accepter) --> admin
+ -- go to actions and select accept request.
+ 
+ 2) Route Table:
+ 
+ -- select application
+  -- Go to app-MRT --> subnet associations --> Edit subnet associations --> select public --> save association
+  -- same as routes --> Edit routes --> Add route --> 150.1500.0.0/16 --> peering connection --> save changes
+  
+  same steps to follow for admin also -- 100.100.0.0/16
+  
+  Go to mobaxterm and take application IP and connect
+  -- ping admin IP
+  -- cat > sample.txt
+  -- scp -i /tmp/devops.pem sample.txt ec2-user@43.204.142.78:/home/ec2-user
+  -- connect admin IP and check the whatever will create sample file.
+  
+  
+  
+ 
+
+
+
+
+
+
+  
+            
+
+
+
+
 
 
 
