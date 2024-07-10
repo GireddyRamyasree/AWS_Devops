@@ -7,3 +7,4 @@
  17 yum install git -y
  java -version
 echo $java_home
+echo
