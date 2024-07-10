@@ -8,3 +8,4 @@
  java -version
 echo $java_home
 echo
+oracle 
