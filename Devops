@@ -717,6 +717,44 @@ Error message --> [ERROR] Failed to execute goal org.sonarsource.scanner.maven:s
   -- cat > sample.txt
   -- scp -i /tmp/devops.pem sample.txt ec2-user@43.204.142.78:/home/ec2-user
   -- connect admin IP and check the whatever will create sample file.
+
+=============================================================================================
+**** Transit gateway: 
+ 
+ 1) create vpc 
+ -- select vpc and more 
+ -- Name --> project1 , project2 , project3
+ -- IP -- 10.0.0.0/16 , 20.0.0.0/16 , 30.0.0.0/16
+ -- number of availability zones -- 1
+ -- number of public subnets -- 1
+ -- number of private subnets -- 0
+ -- NAT gateway -- None
+ -- VPC endpoints -- None
+ -- create vpc
+ 
+ 2) Ec2 Instance
+ 
+ -- Launch 3 instances
+
+ 3) create Transit gateway
+ -- name --> mytrans
+ -- create
+ -- It will create automatic transit gateway route table
+ -- create transit gateway attachment 
+ -- Name -- trans1
+ -- vpc ID -- project1 like these 
+ 
+ 4) Route Table
+ -- project1 -- routes -- editroutes 
+ -- same as routes --> Edit routes --> Add route --> 20.0.0.0/16 & 30.0.0.0/16 --> Transit gateway --> save changes
+ -- same steps to follow for project2 and project3 also
+ -- go to servers and ping IP
+ -- will do ssh configuration
+ 
+==========================================================================================================================
+ 
+  
+
   
   
   
