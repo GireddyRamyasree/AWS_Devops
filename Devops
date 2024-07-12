@@ -752,6 +752,142 @@ Error message --> [ERROR] Failed to execute goal org.sonarsource.scanner.maven:s
  -- will do ssh configuration
  
 ==========================================================================================================================
+
+***** jenkins job schedule:
+
+--- New Item --> job1
+-- select freestyle project and click on ok
+-- General --> Description -->  print the statement
+-- Go to Build steps --> Execute shell
+-- echo "hello devops" (echo statement)
+-- apply and save
+-- same steps to follow for job2 and job3
+
+-- select job1
+-- configure --> Build Triggers
+-- select --> Build priodically --> Schedule --> */1 * * * *
+-- apply and save it will trigger automatically 
+
+-- select job2
+-- configure --> Build Triggers
+-- select --> Poll SCM --> Schedule --> */1 * * * *
+-- apply and save
+-- when will do changes in git then only job will trigger
+-- source code management --> Git -->
+-- source code management -- select Git -- Add jenkins -- give credentials -- 
+-- username and password -- Github credentials 
+-- ID --> GitHub , Description -- GitHub-configuration
+-- Branch --> main
+-- Apply and save 
+
+-- select job3
+-- configure --> Build Triggers
+-- select --> Gitbub hook trigger for GITScm poling
+-- above job2 git steps to follow
+-- Github --> settings --> webhooks --> payload url --> http://43.204.142.78:8080/github-webhook/ (jenkins url)
+-- Add webhook --> it will show active
+--  will do changes in git then only job will trigger
+
+-- Poll SCM will better in projects
+
+======================================================================================================================
+
+****** sequential jobs/ upstream and downtsream jobs :
+
+-- we need to create 3 jobs
+-- New Item --> job1 , job2 , job3
+-- select freestyle project and click on ok
+-- General --> Description -->  print the statement
+-- Go to Build steps --> Execute shell
+-- echo "hello devops" (echo statement)
+-- apply and save
+-- build triggers --> Build after other projects are built 
+-- job1 --> Trigger only if build is stable --> apply and save --> Build now 
+
+-- job1 --> upstream(job2) -- downstream (job3) 
+-- job2 --> upstream(job3) -- downstream (job1) 
+-- job3 --> upstream(job1) -- downstream (job2) 
+
+===============================================================================================================================
+
+-- Launch one Ec2 instance for jenkins
+-- Instance type take medium 2CPU , 4GB
+-- start the jenkins server
+-- create 3 jobs
+
+-- **** Build pipeline Plugin :
+-- Dashboard --> manage jenkins --> Plugins --> Available Plugins --> install
++ symbol click on that --> Name --> mypipeline --> Type --> Build pipeline view --> create --> apply and ok
+
+-- **** Delivery pipeline :
+-- Dashboard --> manage jenkins --> Plugins --> Available Plugins --> install
++ symbol click on that --> Name --> mypipeline --> Type --> Delivery pipeline view --> create --> apply and ok
+-- Number of pipelines 3 --> Display aggregated pipeline for each pipeline
+-- Number of columns 3 --> Enable start of new pipeline build
+-- pipelines --> name --> mypipeline --> initial job --> joba --> Final job (optinal) --> jobc --> apply and ok
+
+-- *** multi job plugin :
+-- Dashboard --> manage jenkins --> Plugins --> Available Plugins --> install
+-- Dashboard -- new item -- multi job --> select -- multi job project -- ok
+-- configure --> Build steps --> multijob phase --> phase name -- multijob --> jobname --> joba
+-- Add jobs -- jobb -- jobc --> apply and save --> Build now
+
+============================================================================================
+
+-- ** master / slave concept :
+-- Launch one Ec2 instance 
+-- Dashboard --> manage jenkins --> nodes --> new node
+-- nodename --> dev-slave --> Description --> creating one dev env --> number of executors --> 2
+-- Remote root directory --> /home/ec2-user/jenkins --> label -- dev 
+-- usage --> only build jobs with label expression matching this node
+-- Launch method --> Launch agents via SSH
+-- HOST --> private IP
+-- add credentials --> SSH username with private key --> username --> ec2-user --> private key -- Enter directly --> add
+-- devops.pem key copy and paste and add
+-- Host key verification strategy --> non verfiying verification strategy --> save
+
+-- new item --> ms-job --> free style project --> ok
+-- source code management -- select Git -- Add jenkins -- give credentials -- 
+-- username and password -- Github credentials 
+-- ID --> GitHub , Description -- GitHub-configuration
+-- Branch --> main --> apply and save 
+-- Build now --> it will create not in master
+-- General --> restrict where this project can be run
+-- Label expression --> dev 
+-- label dev matches 1 node -- apply and save 
+-- ls /var/lib/jenkins/workspace
+-- it will create jenkins folder jenkins/workspace 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
  
   
 
