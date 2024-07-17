@@ -858,6 +858,32 @@ Error message --> [ERROR] Failed to execute goal org.sonarsource.scanner.maven:s
 -- ls /var/lib/jenkins/workspace
 -- it will create jenkins folder jenkins/workspace 
 
+-- jenkins default port number 8080 to change the another port number 
+
+-- vi /usr/lib/systemd/system/jenkins.service
+-- systemctl restart jenkins
+
+=======================================================================================================================================
+
+******* Ansible (configuration management tool):
+
+-- use script --> YML or YAML script
+-- ACM --> Ansible control manager
+-- DSL Groovy script --> Domain specific Languages
+-- YAML --> Yet another markup language 
+
+=================================================================================================================================
+
+****** AWS Storage Features:
+
+-- S3 --> simple storage service --> object level
+-- EBS --> Elastic Block storage
+-- EFS --> Elastic File System
+-- RDS --> Relational Database service (server level)
+
+-- Ec2 -- Elastic cloud compute
+-- vpc -- virtual private cloud
+
 
 
 
