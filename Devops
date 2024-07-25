@@ -954,6 +954,85 @@ ansible_ssh_private_key_file=/tmp/devops.pem
 -- ansible all -m ping ( will give pong response)
 -- ansible all -m yum -a "name=httpd state=present" --become
 -- ansible all -m shell -a "systemctl status httpd" ( check the service status in all the machines )
+-- will create one file as vi ping.yml (playbook)
+ ---
+ - hosts: all
+  gather_facts: no
+  remote_user: ec2-user
+  tasks:
+    - name: Test connection
+      ping:
+      remote_user: ec2-user
+---  ansible-playbook ping.yml --syntax-check  (syntax check mode)
+--- ansible-playbook ping.yml --check      ( dry run mode)
+--- ansible-playbook ping.yml    (Actual run mode)
+
+-- will create one ec2 instance creation
+-- vi ec2.yml
+---
+ - name: EC2 instance creation
+   hosts: localhost
+   become: true
+   tasks:
+    - pip:
+       name: boto
+    - name: Configuring instance
+      ec2:
+        aws_access_key: (for this go to account --> security credentials --> create access key --> download the file)
+        aws_secret_key: 
+        region: ap-south-1
+        image: ami-0d473344347276854 ( go to EC2 instance and select the AMI ID)
+        count: 1
+        instance_type: t2.micro
+        key_name: devops
+        vpc_subnet_id: subnet-0f07f326d1fd31257 ( go to subnets and select subnet id)
+        assign_public_ip: true
+        group: sr-group ( go to security group and give security group name)
+        wait: yes
+        instance_tags:
+          Name: ansible_instance
+      register: ec2
+	  
+--- create one file as vi myinventory1
+
+-- ansible_host=localhost
+
+[allservers:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key_file=/tmp/devops.pem
+-- go to vi ansible.cfg file edit the line ./myinventory1
+
+-- ansible-playbook ec2.yml --syntax-check  (syntax check mode)
+
+--- ansible-playbook ec2.yml --check (it will show error pip error)
+
+-- install the pip -- yum install pip -y
+
+-- ansible-playbook ec2.yml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
