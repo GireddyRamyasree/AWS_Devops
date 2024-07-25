@@ -884,6 +884,96 @@ Error message --> [ERROR] Failed to execute goal org.sonarsource.scanner.maven:s
 -- Ec2 -- Elastic cloud compute
 -- vpc -- virtual private cloud
 
+=====================================================================================================================================
+
+****** EBS :
+-- create one instance 
+-- create one volume
+-- select volume type and click on create volume
+-- Actions --> attach volume 
+-- Instance
+-- device name --> /dev/sdb  --> attach volume
+-- go to server
+-- fdisk -l
+-- lsblk
+-- mkfs.ext4 /dev/xvdb
+-- mkdir app5
+-- mount -t ext4 /dev/xvdb app5
+-- cat /etc/mtab  --temporary
+-- vi /etc/fstab -- permanent
+-- one line will add -- /dev/xvdb /home/ec2-user/app5 ext4 defaults 0 0
+-- 0 --> dump , 0 --> check sequence
+-- cd app5
+-- it will show lost+found
+
+====================================================================================================================================
+******* Ansible (configuration management tool):
+
+-- use script --> YML or YAML script
+-- ACM --> Ansible control manager
+-- DSL Groovy script --> Domain specific Languages
+-- YAML --> Yet another markup language
+-- PIP --> Python library dependencies 
+
+1) Launch one Ec2 Instance for ansible
+-- connect to the server
+-- amazon-linux-extras install ansible2 -y
+-- ansible --version
+-- config file = /etc/ansible/ansible.cfg
+-- create one file -- vi ansible.cfg
+-- add these lines 
+[defaults]
+inventory =./myinventory
+host_key_checking=False
+
+-- create one more file -- vi myinventory
+-- add these lines
+
+node1 ansible_host=172.31.41.132
+node2 ansible_host=172.31.34.23
+
+[mygroup]
+node1
+node2
+
+[allservers:children]
+mygroup
+
+
+[allservers:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key_file=/tmp/devops.pem
+
+-- vi /tmp/devops.pem
+-- chmod 700 /tmp/devops.pem
+-- Launch 2 Ec2 Instances :
+1) targetmachine1
+2) targetmachine2
+
+-- In inventory file change the targetmachine private IP's
+-- ansible all -m ping ( will give pong response)
+-- ansible all -m yum -a "name=httpd state=present" --become
+-- ansible all -m shell -a "systemctl status httpd" ( check the service status in all the machines )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
